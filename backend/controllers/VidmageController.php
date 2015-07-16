@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Vidmage;
 use common\models\VidmageSearch;
+use common\models\VidmageCategory;
 use yii\web\Controller;
 use common\models\User;
 use yii\web\HttpException;
@@ -92,6 +93,7 @@ class VidmageController extends Controller
 	public function actionCreate()
 	{
 		$model = new Vidmage;
+        $vidmageCategory = new VidmageCategory;
 
 		try {
             if ($model->load($_POST) && $model->save()) {
@@ -103,7 +105,7 @@ class VidmageController extends Controller
             $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
             $model->addError('_exception', $msg);
 		}
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', compact('model','vidmageCategory'));
 	}
 
 	/**

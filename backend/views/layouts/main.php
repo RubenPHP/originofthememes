@@ -25,13 +25,22 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Origin of the Memes',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
+                ['label' => 'Vidmage', 'items' =>[
+                                        ['label' => 'Vidmage','url' => ['/vidmage/index']],
+                                        ['label' => 'Category','url' => ['/category/index']],
+                                        ['label' => 'Author','url' => ['/author/index']],
+                                        ['label' => 'Tag','url' => ['/tag/index']],
+                                    ]],
+                ['label' => 'Meme', 'url' => ['/meme/index']],
+                ['label' => 'Platform', 'url' => ['/platform/index']],
+                //['label' => 'User', 'url' => ['/user/index']],
                 ['label' => 'Home', 'url' => ['/site/index']],
             ];
             if (Yii::$app->user->isGuest) {
@@ -44,7 +53,7 @@ AppAsset::register($this);
                 ];
             }
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
+                'options' => ['class' => 'navbar-nav navbar-left'],
                 'items' => $menuItems,
             ]);
             NavBar::end();

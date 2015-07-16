@@ -18,8 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <div class="clearfix"></div>
 
-    <?= $this->render('_form', [
-    'model' => $model,
-    ]); ?>
+    <?= $this->render('_form', compact('model','vidmageCategory')); ?>
 
 </div>

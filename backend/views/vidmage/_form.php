@@ -3,8 +3,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
+use \kartik\select2\Select2;
 
 use common\models\User;
+use common\models\Category;
+
 /**
 * @var yii\web\View $this
 * @var common\models\Vidmage $model
@@ -34,17 +37,32 @@ use common\models\User;
 
             <div class="">
                 <?php $this->beginBlock('main'); ?>
-
                 <p>
-                    
-			<?= $form->field($model, 'user_id')->dropDownList(User::getMappedArray()) ?>
-			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'views')->textInput() ?>
-			<?= $form->field($model, 'is_active')->checkBox() ?>
+        			<?= $form->field($model, 'user_id')->dropDownList(User::getMappedArray()) ?>
+        			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+        			<?= $form->field($model, 'views')->textInput() ?>
+        			<?= $form->field($model, 'is_active')->checkBox() ?>
+
+                    <?=
+                        $form->field($vidmageCategory, 'category_id')->widget(Select2::classname(), [
+                            'data' => Category::getMappedArray(),
+                            'value' => ['test'],//selected values. Load $vidmage->vidmageCategories as array
+                            'options' => [
+                                'placeholder' => 'Select a category ...',
+                                'multiple' => true,
+                            ],
+
+                            'pluginOptions' => [
+                                'tags' => true,
+                                'tokenSeparators' => [',', ' '],
+                            ],
+                        ]);
+                    ?>
                 </p>
+
                 <?php $this->endBlock(); ?>
-                
+
                 <?=
     Tabs::widget(
                  [
