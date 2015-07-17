@@ -45,9 +45,9 @@ use common\models\Category;
         			<?= $form->field($model, 'is_active')->checkBox() ?>
 
                     <?=
-                        $form->field($vidmageCategory, 'category_id')->widget(Select2::classname(), [
+                        $form->field($model, 'vidmageCategories')->widget(Select2::classname(), [
                             'data' => Category::getMappedArray(),
-                            'value' => ['test'],//selected values. Load $vidmage->vidmageCategories as array
+                            'value' => ['Humor'],//selected values. Load $vidmage->vidmageCategories as array
                             'options' => [
                                 'placeholder' => 'Select a category ...',
                                 'multiple' => true,

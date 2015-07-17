@@ -93,10 +93,17 @@ class VidmageController extends Controller
 	public function actionCreate()
 	{
 		$model = new Vidmage;
-        $vidmageCategory = new VidmageCategory;
 
 		try {
             if ($model->load($_POST) && $model->save()) {
+                $post = Yii::$app->request->post();
+                $vidmageCategories = !empty($post['Vidmage']['vidmageCategories']) ? $post['Vidmage']['vidmageCategories'] : [];
+                foreach ($vidmageCategories as $vidmageCategoryId) {
+                    $vidmageCategory = new VidmageCategory;
+                    $vidmageCategory->vidmage_id = $model->id;
+                    $vidmageCategory->category_id = $vidmageCategoryId;
+                    $vidmageCategory->save();
+                }
                 return $this->redirect(Url::previous());
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
@@ -105,7 +112,7 @@ class VidmageController extends Controller
             $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
             $model->addError('_exception', $msg);
 		}
-        return $this->render('create', compact('model','vidmageCategory'));
+        return $this->render('create', compact('model'));
 	}
 
 	/**
@@ -117,8 +124,16 @@ class VidmageController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
-
 		if ($model->load($_POST) && $model->save()) {
+            var_dump($model->vidmageCategories);
+            var_dump(Yii::$app->request->post('Vidmage')['vidmageCategories']);
+            die;
+            foreach (Yii::$app->request->post('Vidmage')['vidmageCategories'] as $vidmageCategoryId) {
+                $vidmageCategory = new VidmageCategory;
+                $vidmageCategory->vidmage_id = $model->id;
+                $vidmageCategory->category_id = $vidmageCategoryId;
+                $vidmageCategory->save();
+            }
             return $this->redirect(Url::previous());
 		} else {
 			return $this->render('update', [
