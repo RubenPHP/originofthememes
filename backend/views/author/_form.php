@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
+use \Zelenin\yii\widgets\Summernote\Summernote;
 
 /**
 * @var yii\web\View $this
@@ -35,14 +36,16 @@ use \dmstr\bootstrap\Tabs;
                 <?php $this->beginBlock('main'); ?>
 
                 <p>
-                    
+
 			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'biography')->textarea(['rows' => 6]) ?>
+			<?= $form->field($model, 'biography')->widget(Summernote::className(),[
+                                        'clientOptions' => []
+            ]) ?>
 			<?= $form->field($model, 'url_info')->textInput(['maxlength' => true]) ?>
 			<?= $form->field($model, 'is_famous')->checkBox() ?>
                 </p>
                 <?php $this->endBlock(); ?>
-                
+
                 <?=
     Tabs::widget(
                  [

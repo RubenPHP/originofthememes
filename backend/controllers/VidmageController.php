@@ -12,6 +12,7 @@ use yii\web\HttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use dmstr\bootstrap\Tabs;
 
 /**
@@ -93,18 +94,21 @@ class VidmageController extends Controller
 	public function actionCreate()
 	{
 		$model = new Vidmage;
+        $model->loadDefaultValues();
 
 		try {
             if ($model->load($_POST) && $model->save()) {
                 $post = Yii::$app->request->post();
-                $vidmageCategories = !empty($post['Vidmage']['vidmageCategories']) ? $post['Vidmage']['vidmageCategories'] : [];
-                foreach ($vidmageCategories as $vidmageCategoryId) {
-                    $vidmageCategory = new VidmageCategory;
-                    $vidmageCategory->vidmage_id = $model->id;
-                    $vidmageCategory->category_id = $vidmageCategoryId;
-                    $vidmageCategory->save();
-                }
-                return $this->redirect(Url::previous());
+                $postVidmageCategories = !empty($post['vidmageCategories']) ? $post['vidmageCategories'] : [];
+                $postVidmageAuthors = !empty($post['vidmageAuthors']) ? $post['vidmageAuthors'] : [];
+                $postVidmageTags = !empty($post['vidmageTags']) ? $post['vidmageTags'] : [];
+
+                $model->saveManyCategories($postVidmageCategories);
+                $model->saveManyAuthors($postVidmageAuthors);
+                $model->saveManyTags($postVidmageTags);
+
+                //return $this->redirect(Url::previous());
+                return $this->redirect(['update', 'id'=>$model->id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
@@ -125,16 +129,38 @@ class VidmageController extends Controller
 	{
 		$model = $this->findModel($id);
 		if ($model->load($_POST) && $model->save()) {
-            var_dump($model->vidmageCategories);
-            var_dump(Yii::$app->request->post('Vidmage')['vidmageCategories']);
-            die;
-            foreach (Yii::$app->request->post('Vidmage')['vidmageCategories'] as $vidmageCategoryId) {
-                $vidmageCategory = new VidmageCategory;
-                $vidmageCategory->vidmage_id = $model->id;
-                $vidmageCategory->category_id = $vidmageCategoryId;
-                $vidmageCategory->save();
-            }
-            return $this->redirect(Url::previous());
+            $post = Yii::$app->request->post();
+
+            $postVidmageCategories = !empty($post['vidmageCategories']) ? $post['vidmageCategories'] : [];
+            $postVidmageAuthors = !empty($post['vidmageAuthors']) ? $post['vidmageAuthors'] : [];
+            $postVidmageTags = !empty($post['vidmageTags']) ? $post['vidmageTags'] : [];
+            $postVidmageMemes = !empty($post['vidmageMemes']) ? $post['vidmageMemes'] : [];
+
+            $vidmageCategoriesArray = ArrayHelper::getColumn($model->vidmageCategories, 'category_id');
+            $vidmageAuthorsArray = ArrayHelper::getColumn($model->vidmageAuthors, 'author_id');
+            $vidmageTagsArray = ArrayHelper::getColumn($model->vidmageTags, 'tag_id');
+            $vidmageMemesArray = ArrayHelper::getColumn($model->memeVidmages, 'meme_id');
+
+            $categoriesToRemove = array_diff($vidmageCategoriesArray, $postVidmageCategories);
+            $categoriesToAdd = array_diff($postVidmageCategories, $vidmageCategoriesArray);
+            $authorsToRemove = array_diff($vidmageAuthorsArray, $postVidmageAuthors);
+            $authorsToAdd = array_diff($postVidmageAuthors, $vidmageAuthorsArray);
+            $tagsToRemove = array_diff($vidmageTagsArray, $postVidmageTags);
+            $tagsToAdd = array_diff($postVidmageTags, $vidmageTagsArray);
+            $memesToRemove = array_diff($vidmageMemesArray, $postVidmageMemes);
+            $memesToAdd = array_diff($postVidmageMemes, $vidmageMemesArray);
+
+            $model->deleteManyCategories($categoriesToRemove);
+            $model->saveManyCategories($categoriesToAdd);
+            $model->deleteManyAuthors($authorsToRemove);
+            $model->saveManyAuthors($authorsToAdd);
+            $model->deleteManyTags($tagsToRemove);
+            $model->saveManyTags($tagsToAdd);
+            $model->deleteManyMemes($memesToRemove);
+            $model->saveManyMemes($memesToAdd);
+
+            return $this->refresh();
+            //return $this->redirect(Url::previous());
 		} else {
 			return $this->render('update', [
 				'model' => $model,

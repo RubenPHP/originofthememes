@@ -1,8 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
+use \Zelenin\yii\widgets\Summernote\Summernote;
+use \kartik\select2\Select2;
+
+use common\models\Vidmage;
 
 /**
 * @var yii\web\View $this
@@ -35,12 +40,62 @@ use \dmstr\bootstrap\Tabs;
                 <?php $this->beginBlock('main'); ?>
 
                 <p>
-                    
-			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="meme-memevidmageOrigin">
+                            Vidmage Origin
+                        </label>
+                        <div class="col-sm-6">
+                            <?=
+                                Select2::widget([
+                                    'name' => 'memeVidmageOrigin',
+                                    'data' => Vidmage::getMappedArray(),
+                                    'value' => $model->originMemeVidmageAsArray,//selected values. Load $vidmage->vidmageCategories as array
+                                    'options' => [
+                                        'placeholder' => 'Select Vidmage Origin ...',
+                                        'multiple' => false,
+                                    ],
+
+                                    'pluginOptions' => [
+                                        'tags' => false,
+                                    ],
+                                ]);
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="meme-memevidmages">
+                            Vidmages
+                        </label>
+                        <div class="col-sm-6">
+                            <?=
+                                Select2::widget([
+                                    'name' => 'memeVidmages',
+                                    'data' => Vidmage::getMappedArray(),
+                                    'value' => ArrayHelper::getColumn($model->notOriginMemeVidmages, 'vidmage_id'),//selected values. Load $vidmage->vidmageCategories as array
+                                    'options' => [
+                                        'placeholder' => 'Select a Vidmage ...',
+                                        'multiple' => true,
+                                    ],
+
+                                    'pluginOptions' => [
+                                        'tags' => true,
+                                        //'tokenSeparators' => [','],
+                                    ],
+                                ]);
+                            ?>
+                        </div>
+                    </div>
+
+                    <?= $form->field($model, 'description')->widget(Summernote::className(),[
+                                                'clientOptions' => []
+                    ]) ?>
                 </p>
                 <?php $this->endBlock(); ?>
-                
+
                 <?=
     Tabs::widget(
                  [

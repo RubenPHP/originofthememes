@@ -11,6 +11,7 @@ use yii\web\HttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use dmstr\bootstrap\Tabs;
 
 /**
@@ -95,7 +96,15 @@ class MemeController extends Controller
 
 		try {
             if ($model->load($_POST) && $model->save()) {
-                return $this->redirect(Url::previous());
+                $post = Yii::$app->request->post();
+                $postOriginMemeVidmage = !empty($post['memeVidmageOrigin']) ? [$post['memeVidmageOrigin']] : [];
+                $postMemeVidmages = !empty($post['memeVidmages']) ? $post['memeVidmages'] : [];
+
+                $model->saveManyVidmages($postOriginMemeVidmage, true);
+                $model->saveManyVidmages($postMemeVidmages);
+
+                //return $this->redirect(Url::previous());
+                return $this->redirect(['update', 'id'=>$model->id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
@@ -115,9 +124,26 @@ class MemeController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
+        /*var_dump($model);
+        var_dump($_POST);die;*/
 
 		if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(Url::previous());
+            $post = Yii::$app->request->post();
+            $postMemeVidmages = !empty($post['memeVidmages']) ? $post['memeVidmages'] : [];
+
+            $memeVidmagesArray = ArrayHelper::getColumn($model->notOriginMemeVidmages, 'vidmage_id');
+            $memeVidmagesToRemove = array_diff($memeVidmagesArray, $postMemeVidmages);
+            $memeVidmagesToAdd = array_diff($postMemeVidmages, $memeVidmagesArray);
+
+            //var_dump($memeVidmagesArray);var_dump($memeVidmagesToRemove);var_dump($memeVidmagesToAdd);die;
+
+            $model->updateOriginMemeVidmage($post['memeVidmageOrigin']);
+
+            $model->deleteManyVidmages($memeVidmagesToRemove);
+            $model->saveManyVidmages($memeVidmagesToAdd);
+
+            //return $this->redirect(Url::previous());
+            return $this->refresh();
 		} else {
 			return $this->render('update', [
 				'model' => $model,

@@ -34,7 +34,8 @@ class MemeVidmage extends \yii\db\ActiveRecord
     {
         return [
             [['meme_id', 'vidmage_id'], 'required'],
-            [['meme_id', 'vidmage_id', 'is_the_origin', 'likes'], 'integer']
+            [['meme_id', 'vidmage_id', 'likes'], 'integer'],
+            [['is_the_origin'], 'boolean']
         ];
     }
 
@@ -67,7 +68,4 @@ class MemeVidmage extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\Vidmage::className(), ['id' => 'vidmage_id']);
     }
-
-
-    
 }
