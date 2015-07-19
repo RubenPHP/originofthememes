@@ -92,7 +92,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			'name',
 			'biography:ntext',
 			'is_famous',
+			'handle_twitter',
+			'handle_snapchat',
 			'url_info:url',
+			'url_vine:url',
+			/*'url_instagram:url'*/
+			/*'url_youtube:url'*/
                 ],
             ]); ?>
                 </div>

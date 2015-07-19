@@ -42,7 +42,6 @@ use common\models\Vidmage;
                 <p>
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="meme-memevidmageOrigin">
                             Vidmage Origin
@@ -93,6 +92,8 @@ use common\models\Vidmage;
                     <?= $form->field($model, 'description')->widget(Summernote::className(),[
                                                 'clientOptions' => []
                     ]) ?>
+
+                    <?= $form->field($model, 'url_info')->textInput(['maxlength' => true]) ?>
                 </p>
                 <?php $this->endBlock(); ?>
 

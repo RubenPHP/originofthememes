@@ -42,6 +42,11 @@ use \Zelenin\yii\widgets\Summernote\Summernote;
                                         'clientOptions' => []
             ]) ?>
 			<?= $form->field($model, 'url_info')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'url_vine')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'url_instagram')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'url_youtube')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'handle_twitter')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'handle_snapchat')->textInput(['maxlength' => true]) ?>
 			<?= $form->field($model, 'is_famous')->checkBox() ?>
                 </p>
                 <?php $this->endBlock(); ?>

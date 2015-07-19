@@ -12,6 +12,7 @@ use common\models\Author;
 use common\models\Tag;
 use common\models\Vidmage;
 use common\models\Meme;
+use common\models\Platform;
 
 /**
 * @var yii\web\View $this
@@ -46,7 +47,8 @@ use common\models\Meme;
         			<?= $form->field($model, 'user_id')->dropDownList(User::getMappedArray()) ?>
         			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-        			<?php if (!$model->isNewRecord): ?>
+        			<?= $form->field($model, 'platform_id')->dropDownList(Platform::getMappedArray()) ?>
+                    <?php if (!$model->isNewRecord): ?>
                         <?= $form->field($model, 'views')->textInput() ?>
                     <?php endif ?>
                     <?= $form->field($model, 'is_active')->checkBox() ?>

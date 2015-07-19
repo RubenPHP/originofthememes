@@ -58,6 +58,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
         'name',
         'biography:ntext',
         'url_info:url',
+        'url_vine:url',
+        'url_instagram:url',
+        'url_youtube:url',
+        'handle_twitter',
+        'handle_snapchat',
         'is_famous',
     ],
     ]); ?>

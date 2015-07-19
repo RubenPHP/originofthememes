@@ -11,6 +11,11 @@ use Yii;
  * @property string $name
  * @property string $biography
  * @property string $url_info
+ * @property string $url_vine
+ * @property string $url_instagram
+ * @property string $url_youtube
+ * @property string $handle_twitter
+ * @property string $handle_snapchat
  * @property integer $is_famous
  *
  * @property \common\models\VidmageAuthor[] $vidmageAuthors
@@ -35,7 +40,8 @@ class Author extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['biography'], 'string'],
             [['is_famous'], 'integer'],
-            [['name', 'url_info'], 'string', 'max' => 255]
+            [['name', 'handle_twitter', 'handle_snapchat'], 'string', 'max' => 255],
+            [['url_info', 'url_vine', 'url_instagram', 'url_youtube'], 'string', 'max' => 2083]
         ];
     }
 
@@ -49,6 +55,11 @@ class Author extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'biography' => Yii::t('app', 'Biography'),
             'url_info' => Yii::t('app', 'Url Info'),
+            'url_vine' => Yii::t('app', 'Url Vine'),
+            'url_instagram' => Yii::t('app', 'Url Instagram'),
+            'url_youtube' => Yii::t('app', 'Url Youtube'),
+            'handle_twitter' => Yii::t('app', 'Handle Twitter'),
+            'handle_snapchat' => Yii::t('app', 'Handle Snapchat'),
             'is_famous' => Yii::t('app', 'Is Famous'),
         ];
     }

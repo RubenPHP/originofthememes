@@ -25,7 +25,17 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'url_info') ?>
 
-		<?= $form->field($model, 'is_famous') ?>
+		<?= $form->field($model, 'url_vine') ?>
+
+		<?php // echo $form->field($model, 'url_instagram') ?>
+
+		<?php // echo $form->field($model, 'url_youtube') ?>
+
+		<?php // echo $form->field($model, 'handle_twitter') ?>
+
+		<?php // echo $form->field($model, 'handle_snapchat') ?>
+
+		<?php // echo $form->field($model, 'is_famous') ?>
 
 		<div class="form-group">
 			<?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

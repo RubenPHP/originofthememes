@@ -102,10 +102,12 @@ class VidmageController extends Controller
                 $postVidmageCategories = !empty($post['vidmageCategories']) ? $post['vidmageCategories'] : [];
                 $postVidmageAuthors = !empty($post['vidmageAuthors']) ? $post['vidmageAuthors'] : [];
                 $postVidmageTags = !empty($post['vidmageTags']) ? $post['vidmageTags'] : [];
+                $postVidmageMemes = !empty($post['vidmageMemes']) ? $post['vidmageMemes'] : [];
 
                 $model->saveManyCategories($postVidmageCategories);
                 $model->saveManyAuthors($postVidmageAuthors);
                 $model->saveManyTags($postVidmageTags);
+                $model->saveManyMemes($postVidmageMemes);
 
                 //return $this->redirect(Url::previous());
                 return $this->redirect(['update', 'id'=>$model->id]);

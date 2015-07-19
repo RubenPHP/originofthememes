@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
+ * @property string $url_info
  *
  * @property \common\models\MemeVidmage[] $memeVidmages
  */
@@ -32,7 +33,8 @@ class Meme extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['description'], 'string'],
-            [['name'], 'string', 'max' => 255]
+            [['name'], 'string', 'max' => 255],
+            [['url_info'], 'string', 'max' => 2083]
         ];
     }
 
@@ -45,6 +47,7 @@ class Meme extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
+            'url_info' => Yii::t('app', 'Url Info'),
         ];
     }
 
