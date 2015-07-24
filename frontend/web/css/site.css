@@ -8,6 +8,7 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+    background-color: #f5f5f5;
 }
 
 .wrap > .container {
@@ -16,14 +17,14 @@ body {
 
 .footer {
     height: 60px;
-    background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+    background-color: #fff;
 }
 
 .jumbotron {
-    text-align: center;
-    background-color: transparent;
+    /*text-align: center;*/
+    /*background-color: transparent;*/
 }
 
 .jumbotron .btn {
@@ -89,3 +90,24 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.glyphicon-2x{
+    font-size: 2em;
+}
+
+.glyphicon-3x{
+    font-size: 3em;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+ /*INDEX*/
+ .jumbo-meme{
+    height: 360px;
+ }
+ .featured{
+    background-color: white;
+ }
