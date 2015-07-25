@@ -10,4 +10,32 @@ use \common\models\base\VidmageTag as BaseVidmageTag;
  */
 class VidmageTag extends BaseVidmageTag
 {
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if($insert){
+                $tag = Tag::findOne($this->tag_id);
+                $tag->recount++;
+                $tag->save();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $tag = Tag::findOne($this->tag_id);
+            $tag->recount--;
+            $tag->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

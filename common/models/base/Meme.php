@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  * @property string $description
  * @property string $url_info
  *
@@ -33,7 +34,7 @@ class Meme extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['description'], 'string'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
             [['url_info'], 'string', 'max' => 2083]
         ];
     }
@@ -46,6 +47,7 @@ class Meme extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'description' => Yii::t('app', 'Description'),
             'url_info' => Yii::t('app', 'Url Info'),
         ];

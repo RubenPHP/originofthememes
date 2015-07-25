@@ -11,13 +11,14 @@ use Yii;
  * @property integer $user_id
  * @property integer $platform_id
  * @property string $name
+ * @property string $slug
  * @property string $url
  * @property integer $views
  * @property integer $is_active
  *
  * @property \common\models\MemeVidmage[] $memeVidmages
- * @property \common\models\Platform $platform
  * @property \common\models\User $user
+ * @property \common\models\Platform $platform
  * @property \common\models\VidmageAuthor[] $vidmageAuthors
  * @property \common\models\VidmageCategory[] $vidmageCategories
  * @property \common\models\VidmageTag[] $vidmageTags
@@ -41,7 +42,7 @@ class Vidmage extends \yii\db\ActiveRecord
         return [
             [['user_id', 'name', 'url'], 'required'],
             [['user_id', 'platform_id', 'views', 'is_active'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
             [['url'], 'string', 'max' => 2083]
         ];
     }
@@ -56,6 +57,7 @@ class Vidmage extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'platform_id' => Yii::t('app', 'Platform ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'url' => Yii::t('app', 'Url'),
             'views' => Yii::t('app', 'Views'),
             'is_active' => Yii::t('app', 'Is Active'),
@@ -73,17 +75,17 @@ class Vidmage extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlatform()
+    public function getUser()
     {
-        return $this->hasOne(\common\models\Platform::className(), ['id' => 'platform_id']);
+        return $this->hasOne(\common\models\User::className(), ['id' => 'user_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getPlatform()
     {
-        return $this->hasOne(\common\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\models\Platform::className(), ['id' => 'platform_id']);
     }
 
     /**

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  * @property string $biography
  * @property string $url_info
  * @property string $url_vine
@@ -17,6 +18,7 @@ use Yii;
  * @property string $handle_twitter
  * @property string $handle_snapchat
  * @property integer $is_famous
+ * @property integer $recount
  *
  * @property \common\models\VidmageAuthor[] $vidmageAuthors
  */
@@ -39,8 +41,8 @@ class Author extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['biography'], 'string'],
-            [['is_famous'], 'integer'],
-            [['name', 'handle_twitter', 'handle_snapchat'], 'string', 'max' => 255],
+            [['is_famous', 'recount'], 'integer'],
+            [['name', 'slug', 'handle_twitter', 'handle_snapchat'], 'string', 'max' => 255],
             [['url_info', 'url_vine', 'url_instagram', 'url_youtube'], 'string', 'max' => 2083]
         ];
     }
@@ -53,6 +55,7 @@ class Author extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'biography' => Yii::t('app', 'Biography'),
             'url_info' => Yii::t('app', 'Url Info'),
             'url_vine' => Yii::t('app', 'Url Vine'),
@@ -61,6 +64,7 @@ class Author extends \yii\db\ActiveRecord
             'handle_twitter' => Yii::t('app', 'Handle Twitter'),
             'handle_snapchat' => Yii::t('app', 'Handle Snapchat'),
             'is_famous' => Yii::t('app', 'Is Famous'),
+            'recount' => Yii::t('app', 'Recount'),
         ];
     }
 

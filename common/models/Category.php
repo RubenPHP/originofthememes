@@ -3,17 +3,28 @@
 namespace common\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\behaviors\SluggableBehavior;
+
 use \common\models\base\Category as BaseCategory;
+use \common\models\traits\ExtendModel;
+
 
 /**
  * This is the model class for table "category".
  */
 class Category extends BaseCategory
 {
-    public static function getMappedArray(){
-        $models = self::find()->asArray()->all();
-        return ArrayHelper::map($models, 'id', 'name');
+    use ExtendModel;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
     }
 
     public function __toString(){

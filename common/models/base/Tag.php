@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property integer $recount
  *
  * @property \common\models\VidmageTag[] $vidmageTags
  */
@@ -30,6 +31,7 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['recount'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -42,6 +44,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'recount' => Yii::t('app', 'Recount'),
         ];
     }
 

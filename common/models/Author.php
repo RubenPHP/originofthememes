@@ -3,17 +3,35 @@
 namespace common\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\behaviors\SluggableBehavior;
+
 use \common\models\base\Author as BaseAuthor;
+use \common\models\traits\ExtendModel;
 
 /**
  * This is the model class for table "author".
  */
 class Author extends BaseAuthor
 {
-    public static function getMappedArray(){
-        $models = self::find()->asArray()->all();
-        return ArrayHelper::map($models, 'id', 'name');
+    use ExtendModel;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
+    }
+
+    public static function recalculateRecount(){
+        $authors = self::find()->all();
+        foreach ($authors as $author) {
+            $author->recount = count($author->vidmageAuthors);
+            $author->save();
+        }
     }
 
     public function __toString(){

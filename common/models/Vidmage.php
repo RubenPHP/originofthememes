@@ -3,8 +3,10 @@
 namespace common\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\behaviors\SluggableBehavior;
+
 use \common\models\base\Vidmage as BaseVidmage;
+use \common\models\traits\ExtendModel;
 
 /**
  * This is the model class for table "vidmage".
@@ -12,9 +14,28 @@ use \common\models\base\Vidmage as BaseVidmage;
 class Vidmage extends BaseVidmage
 {
 
-    public static function getMappedArray(){
-        $models = self::find()->asArray()->all();
-        return ArrayHelper::map($models, 'id', 'name');
+    use ExtendModel;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+            ],
+        ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if($insert){
+                $this->downloadAndSaveThumbnail();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function saveManyCategories($vidmageCategories){
@@ -51,12 +72,13 @@ class Vidmage extends BaseVidmage
     }
 
     public function deleteManyAuthors($authorsId){
-        VidmageAuthor::deleteAll([
-                        'and', 'vidmage_id = :vidmage_id',
-                        ['in', 'author_id', $authorsId]
-                       ],
-                       [':vidmage_id' => $this->id]
-                    );
+        $vidmageAuthors = VidmageAuthor::find()
+                                ->where(['vidmage_id' => $this->id])
+                                ->andWhere(['in', 'author_id', $authorsId])
+                                ->all();
+        foreach ($vidmageAuthors as $vidmageAuthor) {
+            $vidmageAuthor->delete();
+        }
     }
 
     public function saveManyTags($vidmageTags){
@@ -76,12 +98,13 @@ class Vidmage extends BaseVidmage
     }
 
     public function deleteManyTags($tagsId){
-        VidmageTag::deleteAll([
-                        'and', 'vidmage_id = :vidmage_id',
-                        ['in', 'tag_id', $tagsId]
-                       ],
-                       [':vidmage_id' => $this->id]
-                    );
+        $vidmageTags = VidmageTag::find()
+                                ->where(['vidmage_id' => $this->id])
+                                ->andWhere(['in', 'tag_id', $tagsId])
+                                ->all();
+        foreach ($vidmageTags as $vidmageTag) {
+            $vidmageTag->delete();
+        }
     }
 
     public function saveManyMemes($vidmageMemes){
@@ -106,6 +129,24 @@ class Vidmage extends BaseVidmage
                        ],
                        [':vidmage_id' => $this->id]
                     );
+    }
+
+    public function downloadAndSaveThumbnail(){
+        $thumbnailPath = Yii::$app->params['thumbnailPath'].$this->thumbnail;
+
+        $page = file_get_contents($this->url);
+        preg_match('/property="og:image" content="(.*?)"/', $page, $matches);
+        $remoteImageUrl = ($matches[1]) ? $matches[1] : false;
+
+        file_put_contents($thumbnailPath, file_get_contents($remoteImageUrl));
+    }
+
+    public function getThumbnailUrl(){
+        return Yii::$app->params['thumbnailUrl'] . $this->thumbnail;
+    }
+
+    public function getThumbnail(){
+        return $this->id . '-' . $this->slug . '' . Yii::$app->params['thumbnailExtension'];
     }
 
     public function __toString(){

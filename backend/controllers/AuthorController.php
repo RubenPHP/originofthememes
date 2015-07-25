@@ -35,7 +35,7 @@ class AuthorController extends Controller
 				'class' => AccessControl::className(),
 					'rules' => [
 					[
-                       'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                       'actions' => ['index', 'view', 'create', 'update', 'delete', 'recalculate'],
                        'allow' => true,
                        'roles' => ['@'],
                        'matchCallback' => function ($rule, $action) {
@@ -155,6 +155,10 @@ class AuthorController extends Controller
             return $this->redirect(['index']);
         }
 	}
+
+    public function actionRecalculate(){
+        Author::recalculateRecount();
+    }
 
 	/**
 	 * Finds the Author model based on its primary key value.

@@ -9,6 +9,9 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
+ *
+ * @property \common\models\Vidmage[] $vidmages
  */
 class Platform extends \yii\db\ActiveRecord
 {
@@ -28,7 +31,7 @@ class Platform extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'max' => 255]
+            [['name', 'slug'], 'string', 'max' => 255]
         ];
     }
 
@@ -40,7 +43,16 @@ class Platform extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVidmages()
+    {
+        return $this->hasMany(\common\models\Vidmage::className(), ['platform_id' => 'id']);
     }
 
 

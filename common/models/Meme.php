@@ -3,17 +3,25 @@
 namespace common\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use \common\models\base\Meme as BaseMeme;
+use yii\behaviors\SluggableBehavior;
 
+use \common\models\base\Meme as BaseMeme;
+use \common\models\traits\ExtendModel;
 /**
  * This is the model class for table "meme".
  */
 class Meme extends BaseMeme
 {
-    public static function getMappedArray(){
-        $models = self::find()->asArray()->all();
-        return ArrayHelper::map($models, 'id', 'name');
+    use ExtendModel;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+            ],
+        ];
     }
 
     public function saveManyVidmages($vidmages, $is_the_origin=false){
@@ -36,10 +44,18 @@ class Meme extends BaseMeme
     }
 
     public function getNotOriginMemeVidmages(){
-        return MemeVidmage::find()
+        return $this->getQueryNotOriginMemeVidmages()->all();
+    }
+
+    public function getCountNotOriginMemeVidmages(){
+        return $this->getQueryNotOriginMemeVidmages()->count();
+    }
+
+    public function getQueryNotOriginMemeVidmages(){
+        $query = MemeVidmage::find()
                 ->where(['meme_id'=>$this->id])
-                ->andWhere(['is_the_origin'=>false])
-                ->all();
+                ->andWhere(['is_the_origin'=>false]);
+        return $query;
     }
 
     public function getOriginMemeVidmage(){
@@ -69,6 +85,16 @@ class Meme extends BaseMeme
         $newOriginMemeVidmage->vidmage_id = $vidmage_id;
         $newOriginMemeVidmage->is_the_origin = true;
         $newOriginMemeVidmage->save();
+    }
+
+    public function getThumbnail(){
+        $originMemeVidmage = $this->originMemeVidmage;
+        return $originMemeVidmage->vidmage->thumbnail;
+    }
+
+    public function getThumbnailUrl(){
+        $originMemeVidmage = $this->originMemeVidmage;
+        return $originMemeVidmage->vidmage->thumbnailUrl;
     }
 
     public function __toString(){

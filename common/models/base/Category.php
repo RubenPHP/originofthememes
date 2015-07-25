@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  *
  * @property \common\models\VidmageCategory[] $vidmageCategories
  */
@@ -30,7 +31,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'max' => 255]
+            [['name', 'slug'], 'string', 'max' => 255]
         ];
     }
 
@@ -42,6 +43,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
         ];
     }
 

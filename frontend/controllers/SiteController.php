@@ -13,6 +13,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use common\models\Meme;
+use common\models\Vidmage;
+
 /**
  * Site controller
  */
@@ -67,7 +70,24 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $mostPopularMeme = Meme::findOne(8);
+        $newReplicas = Vidmage::find()
+                            ->joinWith('memeVidmages')
+                            ->where(['meme_vidmage.is_the_origin' => false])
+                            ->orderBy(['id' => SORT_DESC])
+                            ->limit(4)
+                            ->all();
+        $editorMemePick = Meme::findOne(7);
+        $newMemes = Meme::find()
+                        ->joinWith('memeVidmages')
+                        ->where(['meme_vidmage.is_the_origin'=>true])
+                        ->orderBy(['id' => SORT_DESC])
+                        ->limit(4)
+                        ->all();
+
+        return $this->render('index', compact('mostPopularMeme', 'newReplicas', 
+                                            'editorMemePick', 'newMemes')
+                            );
     }
 
     public function actionLogin()

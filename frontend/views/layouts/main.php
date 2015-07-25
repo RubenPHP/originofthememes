@@ -17,6 +17,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -31,6 +32,16 @@ AppAsset::register($this);
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => ['<a class="btn btn-social-icon btn-twitter btn-sm">
+                                <i class="fa fa-twitter"></i>
+                            </a>',
+                            '<a class="btn btn-social-icon btn-facebook btn-sm">
+                                <i class="fa fa-facebook"></i>
+                            </a>',
+                            ]
             ]);
             NavBar::end();
         ?>
@@ -57,6 +68,24 @@ AppAsset::register($this);
         <p class="pull-right">Debeloped by <a href="http://rubendjon.com/" rel="nofollow" target="_blank">RubenDjOn</a></p>
         </div>
     </footer>
+
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+
 
     <?php $this->endBody() ?>
 </body>

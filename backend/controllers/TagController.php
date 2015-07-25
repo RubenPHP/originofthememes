@@ -35,7 +35,7 @@ class TagController extends Controller
 				'class' => AccessControl::className(),
 					'rules' => [
 					[
-                       'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                       'actions' => ['index', 'view', 'create', 'update', 'delete', 'recalculate'],
                        'allow' => true,
                        'roles' => ['@'],
                        'matchCallback' => function ($rule, $action) {
@@ -155,6 +155,10 @@ class TagController extends Controller
             return $this->redirect(['index']);
         }
 	}
+
+    public function actionRecalculate(){
+        Tag::recalculateRecount();
+    }
 
 	/**
 	 * Finds the Tag model based on its primary key value.
