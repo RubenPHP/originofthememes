@@ -104,10 +104,29 @@ a.desc:after {
     padding-left:0;
 }
 
- /*INDEX*/
- .jumbo-meme{
+/*INDEX*/
+.jumbo-meme{
     height: 360px;
- }
- .featured{
+}
+.jumbo-meme .embed-responsive{
+    min-height: 350px;
+}
+.jumbo-meme ul.tag li:before{
+    content: '#';
+}
+.jumbo-meme ul.tag li {
+    padding-right: 0;
+    padding-left: 0;
+}
+.jumbo-meme{
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    padding-top: 1px !important;
+}
+.jumbo-meme .share-buttons{
+    position: absolute;
+    bottom: 40px;
+}
+.featured{
     background-color: white;
- }
+}

@@ -141,6 +141,10 @@ class Vidmage extends BaseVidmage
         file_put_contents($thumbnailPath, file_get_contents($remoteImageUrl));
     }
 
+    public function getUrl(){
+        return str_replace('{id}', $this->id_url, $this->platform->embed_url_pattern);
+    }
+
     public function getThumbnailUrl(){
         return Yii::$app->params['thumbnailUrl'] . $this->thumbnail;
     }

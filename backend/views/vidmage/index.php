@@ -115,7 +115,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 			'user_id',
 			'name',
-			'url:url',
+			'id_url',
 			'views',
 			'is_active',
                 ],

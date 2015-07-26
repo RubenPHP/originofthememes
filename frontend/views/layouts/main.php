@@ -9,6 +9,8 @@ use frontend\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+$facebookUrl = Yii::$app->params['facebookUrl'];
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -35,12 +37,14 @@ AppAsset::register($this);
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => ['<a class="btn btn-social-icon btn-twitter btn-sm">
-                                <i class="fa fa-twitter"></i>
-                            </a>',
-                            '<a class="btn btn-social-icon btn-facebook btn-sm">
-                                <i class="fa fa-facebook"></i>
-                            </a>',
+                'items' => [Html::a('<i class="fa fa-twitter"></i>', Yii::$app->params['twitterUrl'],
+                                            ['class'=>'btn btn-social-icon btn-twitter btn-sm',
+                                             'target'=>'_blank'
+                                            ]),
+                            Html::a('<i class="fa fa-facebook"></i>', Yii::$app->params['facebookUrl'],
+                                            ['class'=>'btn btn-social-icon btn-facebook btn-sm',
+                                             'target'=>'_blank'
+                                            ]),
                             ]
             ]);
             NavBar::end();
@@ -86,6 +90,14 @@ AppAsset::register($this);
       return t;
     }(document, "script", "twitter-wjs"));</script>
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.4&appId=695097773853029";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <?php $this->endBody() ?>
 </body>

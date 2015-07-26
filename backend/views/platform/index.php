@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="pull-right">
 
-                        
+                                                    
             <?= 
             \yii\bootstrap\ButtonDropdown::widget(
                 [
@@ -38,7 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'class' => 'dropdown-menu-right'
                         ],
                         'encodeLabels' => false,
-                        'items'        => []                    ],
+                        'items'        => [
+    [
+        'label' => '<i class="glyphicon glyphicon-arrow-right"> Vidmage</i>',
+        'url' => [
+            'vidmage/index',
+        ],
+    ],
+]                    ],
                     'options' => [
                         'class' => 'btn-default'
                     ]
@@ -83,6 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'contentOptions' => ['nowrap'=>'nowrap']
         ],
 			'name',
+			'embed_url_pattern:url',
+			'slug',
                 ],
             ]); ?>
                 </div>

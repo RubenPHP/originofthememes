@@ -46,7 +46,7 @@ use common\models\Platform;
                 <p>
         			<?= $form->field($model, 'user_id')->dropDownList(User::getMappedArray()) ?>
         			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-        			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+        			<?= $form->field($model, 'id_url')->textInput(['maxlength' => true]) ?>
         			<?= $form->field($model, 'platform_id')->dropDownList(Platform::getMappedArray()) ?>
                     <?php if (!$model->isNewRecord): ?>
                         <?= $form->field($model, 'views')->textInput() ?>

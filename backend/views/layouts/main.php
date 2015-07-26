@@ -5,6 +5,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 
+use common\models\User;
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -31,18 +33,21 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            $menuItems = [
-                ['label' => 'Vidmage', 'items' =>[
-                                        ['label' => 'Vidmage','url' => ['/vidmage/index']],
-                                        ['label' => 'Category','url' => ['/category/index']],
-                                        ['label' => 'Author','url' => ['/author/index']],
-                                        ['label' => 'Tag','url' => ['/tag/index']],
-                                    ]],
-                ['label' => 'Meme', 'url' => ['/meme/index']],
-                ['label' => 'Platform', 'url' => ['/platform/index']],
-                //['label' => 'User', 'url' => ['/user/index']],
-                ['label' => 'Home', 'url' => ['/site/index']],
-            ];
+            $menuItems = [];
+            if (!Yii::$app->user->isGuest&&User::isUserAdmin(Yii::$app->user->identity->username))
+            {
+                $menuItems = [
+                    ['label' => 'Vidmage', 'items' =>[
+                                            ['label' => 'Vidmage','url' => ['/vidmage/index']],
+                                            ['label' => 'Category','url' => ['/category/index']],
+                                            ['label' => 'Author','url' => ['/author/index']],
+                                            ['label' => 'Tag','url' => ['/tag/index']],
+                                        ]],
+                    ['label' => 'Meme', 'url' => ['/meme/index']],
+                    ['label' => 'Platform', 'url' => ['/platform/index']],
+                    //['label' => 'User', 'url' => ['/user/index']],
+                ];
+            }
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {

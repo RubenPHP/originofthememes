@@ -56,6 +56,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     'attributes' => [
             'id',
         'name',
+        'slug',
+        'embed_url_pattern:url',
     ],
     ]); ?>
 
@@ -71,6 +73,21 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
 
 
     
+<?php $this->beginBlock('Vidmages'); ?>
+<div style='position: relative'><div style='position:absolute; right: 0px; top 0px;'>
+  <?= Html::a(
+            '<span class="glyphicon glyphicon-list"></span> ' . Yii::t('app', 'List All') . ' Vidmages',
+            ['vidmage/index'],
+            ['class'=>'btn text-muted btn-xs']
+        ) ?>
+  <?= Html::a(
+            '<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New') . ' Vidmage',
+            ['vidmage/create', 'Vidmage' => ['platform_id' => $model->id]],
+            ['class'=>'btn btn-success btn-xs']
+        ); ?>
+</div></div><?php $this->endBlock() ?>
+
+
     <?= Tabs::widget(
                  [
                      'id' => 'relation-tabs',
@@ -79,6 +96,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
     'label'   => '<b class=""># '.$model->id.'</b>',
     'content' => $this->blocks['common\models\Platform'],
     'active'  => true,
+],[
+    'content' => $this->blocks['Vidmages'],
+    'label'   => '<small>Vidmages <span class="badge badge-default">'.count($model->getVidmages()->asArray()->all()).'</span></small>',
+    'active'  => false,
 ], ]
                  ]
     );

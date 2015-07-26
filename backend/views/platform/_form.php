@@ -36,7 +36,10 @@ use \dmstr\bootstrap\Tabs;
 
                 <p>
                     
+			<?= $form->field($model, 'id')->textInput() ?>
 			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'embed_url_pattern')->textInput(['maxlength' => true]) ?>
                 </p>
                 <?php $this->endBlock(); ?>
                 

@@ -22,6 +22,7 @@ return [
                 'tags/<slug>' => 'tag/index',
                 'authors/<slug>' => 'author/index',
                 'memes/<slug>' => 'meme/index',
+                'replicas/<slug>' => 'vidmage/index',
                 /*'<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',*/

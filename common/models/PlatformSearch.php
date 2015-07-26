@@ -19,7 +19,7 @@ public function rules()
 {
 return [
 [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'slug', 'embed_url_pattern'], 'safe'],
 ];
 }
 
@@ -59,7 +59,9 @@ $query->andFilterWhere([
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'slug', $this->slug])
+            ->andFilterWhere(['like', 'embed_url_pattern', $this->embed_url_pattern]);
 
 return $dataProvider;
 }

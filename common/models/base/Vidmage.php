@@ -40,10 +40,10 @@ class Vidmage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'url'], 'required'],
+            [['user_id', 'name', 'id_url'], 'required'],
             [['user_id', 'platform_id', 'views', 'is_active'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 255],
-            [['url'], 'string', 'max' => 2083]
+            [['id_url'], 'string', 'max' => 2083]
         ];
     }
 
@@ -58,7 +58,7 @@ class Vidmage extends \yii\db\ActiveRecord
             'platform_id' => Yii::t('app', 'Platform ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'url' => Yii::t('app', 'Url'),
+            'id_url' => Yii::t('app', 'ID from Url'),
             'views' => Yii::t('app', 'Views'),
             'is_active' => Yii::t('app', 'Is Active'),
         ];
@@ -111,7 +111,4 @@ class Vidmage extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\VidmageTag::className(), ['vidmage_id' => 'id']);
     }
-
-
-    
 }

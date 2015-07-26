@@ -4,6 +4,8 @@ namespace backend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\HttpException;
+use common\models\User;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
@@ -26,10 +28,13 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+                       'actions' => ['index', 'logout'],
+                       'allow' => true,
+                       'roles' => ['@'],
+                       'matchCallback' => function ($rule, $action) {
+                           return User::isUserAdmin(Yii::$app->user->identity->username);
+                       }
+                   ],
                 ],
             ],
             'verbs' => [
@@ -44,14 +49,14 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
+/*    public function actions()
     {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
-    }
+    }*/
 
     public function actionIndex()
     {

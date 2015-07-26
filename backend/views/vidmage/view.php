@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
             'id',
         'user_id',
         'name',
-        'url:url',
+        'id_url',
         'views',
         'is_active',
     ],

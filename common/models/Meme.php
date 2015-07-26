@@ -87,6 +87,10 @@ class Meme extends BaseMeme
         $newOriginMemeVidmage->save();
     }
 
+    public function getUrl(){
+        return $this->originMemeVidmage->vidmage->url;
+    }
+
     public function getThumbnail(){
         $originMemeVidmage = $this->originMemeVidmage;
         return $originMemeVidmage->vidmage->thumbnail;
