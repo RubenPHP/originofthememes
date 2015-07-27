@@ -109,7 +109,6 @@ class VidmageController extends Controller
                 $model->saveManyTags($postVidmageTags);
                 $model->saveManyMemes($postVidmageMemes);
 
-                //return $this->redirect(Url::previous());
                 return $this->redirect(['update', 'id'=>$model->id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);

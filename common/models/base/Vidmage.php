@@ -12,11 +12,17 @@ use Yii;
  * @property integer $platform_id
  * @property string $name
  * @property string $slug
- * @property string $url
+ * @property string $id_url
  * @property integer $views
  * @property integer $is_active
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property \common\models\MemeVidmage[] $memeVidmages
+ * @property \common\models\User $createdBy
+ * @property \common\models\User $updatedBy
  * @property \common\models\User $user
  * @property \common\models\Platform $platform
  * @property \common\models\VidmageAuthor[] $vidmageAuthors
@@ -41,7 +47,7 @@ class Vidmage extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'name', 'id_url'], 'required'],
-            [['user_id', 'platform_id', 'views', 'is_active'], 'integer'],
+            [['user_id', 'platform_id', 'views', 'is_active', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['id_url'], 'string', 'max' => 2083]
         ];
@@ -58,9 +64,13 @@ class Vidmage extends \yii\db\ActiveRecord
             'platform_id' => Yii::t('app', 'Platform ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'id_url' => Yii::t('app', 'ID from Url'),
+            'id_url' => Yii::t('app', 'Id Url'),
             'views' => Yii::t('app', 'Views'),
             'is_active' => Yii::t('app', 'Is Active'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -70,6 +80,22 @@ class Vidmage extends \yii\db\ActiveRecord
     public function getMemeVidmages()
     {
         return $this->hasMany(\common\models\MemeVidmage::className(), ['vidmage_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'updated_by']);
     }
 
     /**
@@ -111,4 +137,7 @@ class Vidmage extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\VidmageTag::className(), ['vidmage_id' => 'id']);
     }
+
+
+    
 }

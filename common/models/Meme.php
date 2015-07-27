@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 
 use \common\models\base\Meme as BaseMeme;
 use \common\models\traits\ExtendModel;
@@ -20,6 +22,12 @@ class Meme extends BaseMeme
             [
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
+            ],
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+            ],
+            [
+            'class' => BlameableBehavior::className(),
             ],
         ];
     }

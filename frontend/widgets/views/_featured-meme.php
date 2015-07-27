@@ -10,11 +10,10 @@ use frontend\widgets\ShareButtonsWidget;
 </div>
 <div class="col-sm-6">
     <div class="jumbotron jumbo-meme">
-    <a href="<?= $meme->siteUrl ?>"><h3><?= $meme ?></h3></a>
-    <p><?= $meme->description ?></p>
-    <div class="share-buttons">
-      <?= ShareButtonsWidget::widget(['vidmageMeme' => $meme])?>
-    </div>
-    <p>1,000,000,00 Views</p>
+      <a href="<?= $meme->siteUrl ?>"><h3><?= $meme ?></h3></a>
+      <p><?= $meme->description ?></p>
+      <div class="share-buttons">
+        <?= ShareButtonsWidget::widget(['vidmageMeme' => $meme])?>
+      </div>
     </div>
 </div>

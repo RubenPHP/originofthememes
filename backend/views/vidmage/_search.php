@@ -21,13 +21,25 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'user_id') ?>
 
+		<?= $form->field($model, 'platform_id') ?>
+
 		<?= $form->field($model, 'name') ?>
 
-		<?= $form->field($model, 'id_url') ?>
+		<?= $form->field($model, 'slug') ?>
 
-		<?= $form->field($model, 'views') ?>
+		<?php // echo $form->field($model, 'id_url') ?>
+
+		<?php // echo $form->field($model, 'views') ?>
 
 		<?php // echo $form->field($model, 'is_active') ?>
+
+		<?php // echo $form->field($model, 'created_by') ?>
+
+		<?php // echo $form->field($model, 'updated_by') ?>
+
+		<?php // echo $form->field($model, 'created_at') ?>
+
+		<?php // echo $form->field($model, 'updated_at') ?>
 
 		<div class="form-group">
 			<?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

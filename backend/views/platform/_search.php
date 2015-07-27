@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'embed_url_pattern') ?>
 
+		<?= $form->field($model, 'download_url_pattern') ?>
+
 		<div class="form-group">
 			<?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
 			<?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>

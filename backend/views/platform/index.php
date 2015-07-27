@@ -91,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 			'name',
 			'embed_url_pattern:url',
+			'download_url_pattern:url',
 			'slug',
                 ],
             ]); ?>

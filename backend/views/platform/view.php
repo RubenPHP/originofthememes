@@ -58,6 +58,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'View');
         'name',
         'slug',
         'embed_url_pattern:url',
+        'download_url_pattern:url',
     ],
     ]); ?>
 

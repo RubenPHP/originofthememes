@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $slug
  * @property string $embed_url_pattern
+ * @property string $download_url_pattern
  *
  * @property \common\models\Vidmage[] $vidmages
  */
@@ -31,9 +32,9 @@ class Platform extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'embed_url_pattern'], 'required'],
+            [['name', 'embed_url_pattern', 'download_url_pattern'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
-            [['embed_url_pattern'], 'string', 'max' => 2083]
+            [['embed_url_pattern', 'download_url_pattern'], 'string', 'max' => 2083]
         ];
     }
 
@@ -47,6 +48,7 @@ class Platform extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'embed_url_pattern' => Yii::t('app', 'Embed Url Pattern'),
+            'download_url_pattern' => Yii::t('app', 'Download Url Pattern'),
         ];
     }
 

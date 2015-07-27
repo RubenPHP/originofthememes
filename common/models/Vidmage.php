@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 
 use \common\models\base\Vidmage as BaseVidmage;
 use \common\models\traits\ExtendModel;
@@ -23,19 +25,21 @@ class Vidmage extends BaseVidmage
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
             ],
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+            ],
+            [
+            'class' => BlameableBehavior::className(),
+            ],
         ];
     }
 
-    public function beforeSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->downloadAndSaveThumbnail();
-            }
-            return true;
-        } else {
-            return false;
+        if($insert){
+            $this->downloadAndSaveThumbnail();
         }
+        return parent::afterSave($insert, $changedAttributes);
     }
 
     public function saveManyCategories($vidmageCategories){
@@ -134,9 +138,9 @@ class Vidmage extends BaseVidmage
     public function downloadAndSaveThumbnail(){
         $thumbnailPath = Yii::$app->params['thumbnailPath'].$this->thumbnail;
 
-        $page = file_get_contents($this->url);
+        $page = file_get_contents($this->downloadUrl);
         preg_match('/property="og:image" content="(.*?)"/', $page, $matches);
-        $remoteImageUrl = ($matches[1]) ? $matches[1] : false;
+        $remoteImageUrl = (isset($matches[1])&&!empty($matches[1])) ? $matches[1] : false;
 
         file_put_contents($thumbnailPath, file_get_contents($remoteImageUrl));
     }
@@ -145,6 +149,9 @@ class Vidmage extends BaseVidmage
         return str_replace('{id}', $this->id_url, $this->platform->embed_url_pattern);
     }
 
+    public function getDownloadUrl(){
+        return str_replace('{id}', $this->id_url, $this->platform->download_url_pattern);
+    }
     public function getThumbnailUrl(){
         return Yii::$app->params['thumbnailUrl'] . $this->thumbnail;
     }
