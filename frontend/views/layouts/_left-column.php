@@ -34,38 +34,33 @@ $latestReplicas = Vidmage::find()
         ->limit(10)
         ->all();
 ?>
-<div id="latest-memes">
-    <p>
-        <span class="glyphicon glyphicon-globe glyphicon-2x"></span>
-        <strong><?= Yii::t('app', 'Latest Memes') ?></strong>
-        <?= Tools::ulWithLink($latestMemes) ?>
-    </p>
-</div>
-<div id="latest-replicas">
-    <p>
-        <span class="glyphicon glyphicon-film glyphicon-2x"></span>
-        <strong><?= Yii::t('app', 'Latest Replicas') ?></strong>
-        <?= Tools::ulWithLink($latestReplicas) ?>
-    </p>
-</div>
-<div id="channels">
-    <p>
-        <span class="glyphicon glyphicon-blackboard glyphicon-2x"></span>
-        <strong><?= Yii::t('app', 'Channels') ?></strong>
-    </p>
-    <?= Tools::ulWithLink($channels) ?>
-</div>
-<div id="tags">
-    <p>
-        <span class="glyphicon glyphicon-tag glyphicon-2x"></span>
-        <strong><?= Yii::t('app', 'Trending Tags') ?></strong>
-        <?= Tools::ulWithLink($tags) ?>
-    </p>
-</div>
-<div id="authors">
-    <p>
-        <span class="glyphicon glyphicon-user glyphicon-2x"></span>
-        <strong><?= Yii::t('app', 'Popular Authors') ?></strong>
-        <?= Tools::ulWithLink($authors) ?>
-    </p>
-</div>
+
+<?= $this->render('_left-column-list-items', ['items' => $latestMemes,
+                                              'title' => 'Latest Memes',
+                                              'icon' => 'globe',
+                                              'divId' => 'latest-memes',
+                                              'class' => 'success']) ?>
+
+<?= $this->render('_left-column-list-items', ['items' => $latestReplicas,
+                                              'title' => 'Latest Replicas',
+                                              'icon' => 'globe',
+                                              'divId' => 'latest-replicas',
+                                              'class' => 'info']) ?>
+
+<?= $this->render('_left-column-list-items', ['items' => $channels,
+                                              'title' => 'Channels',
+                                              'icon' => 'blackboard',
+                                              'divId' => 'channels',
+                                              'class' => 'warning']) ?>
+
+<?= $this->render('_left-column-list-items', ['items' => $tags,
+                                              'title' => 'Trending Tags',
+                                              'icon' => 'tag',
+                                              'divId' => 'tags',
+                                              'class' => 'danger']) ?>
+
+<?= $this->render('_left-column-list-items', ['items' => $authors,
+                                              'title' => 'Popular Authors',
+                                              'icon' => 'user',
+                                              'divId' => 'authors',
+                                              'class' => 'danger']) ?>

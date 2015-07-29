@@ -11,9 +11,14 @@ $this->registerMetaTag([
 ]);
 ?>
 <div class="site-index">
-    <div id="most-popular-meme" class="row no-gutter">
-        <h2><span class="glyphicon glyphicon-fire glyphicon-2x text-danger"></span> <?= Yii::t('app', 'Most Popular Meme')?></h2>
+
+    <div id="most-popular-meme" class="panel panel-primary">
+      <div class="panel-heading">
+        <h2><span class="panel-title glyphicon glyphicon-fire glyphicon-1-5x"></span> <?= Yii::t('app', 'Most Popular Meme')?></h2>
+      </div>
+      <div class="panel-body">
         <?= FeaturedMemeWidget::widget(['meme'=>$mostPopularMeme]) ?>
+      </div>
     </div>
 
     <div class="row">
@@ -21,9 +26,14 @@ $this->registerMetaTag([
       <?= ReplicaListWidget::widget(['replicas'=>$newReplicas]) ?>
     </div>
 
-    <div id="editor-pick-meme" class="row no-gutter">
-        <h3><span class="glyphicon glyphicon-certificate glyphicon-2x text-success"></span> <?= Yii::t('app', "Editor's Pick")?></h3>
+
+    <div id="editor-pick-meme" class="panel panel-primary">
+      <div class="panel-heading">
+        <h3><span class="panel-title glyphicon glyphicon-certificate glyphicon-1-5x"></span> <?= Yii::t('app', "Editor's Pick")?></h3>
+      </div>
+      <div class="panel-body">
         <?= FeaturedMemeWidget::widget(['meme'=>$editorMemePick]) ?>
+      </div>
     </div>
 
     <div class="row">

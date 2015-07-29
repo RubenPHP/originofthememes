@@ -91,6 +91,14 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+
+#left-column .panel{
+    margin-bottom: 0;
+}
+.glyphicon-1-5x{
+    font-size: 1.5em;
+}
+
 .glyphicon-2x{
     font-size: 2em;
 }
@@ -102,6 +110,10 @@ a.desc:after {
 .no-gutter > [class*='col-'] {
     padding-right:0;
     padding-left:0;
+}
+
+#tags .panel-body a:before {
+  content: '#';
 }
 
 /*INDEX*/
@@ -130,3 +142,4 @@ a.desc:after {
 .featured{
     background-color: white;
 }
+
