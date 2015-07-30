@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .wrap {
@@ -95,6 +96,11 @@ a.desc:after {
 #left-column .panel{
     margin-bottom: 0;
 }
+
+.glyphicon-1x{
+    font-size: 1em;
+}
+
 .glyphicon-1-5x{
     font-size: 1.5em;
 }
@@ -119,6 +125,11 @@ a.desc:after {
 /*INDEX*/
 .jumbo-meme{
     height: 360px;
+    padding-top: 1px !important;
+}
+.jumbotron.jumbo-meme{
+    padding-right: 20px !important;
+    padding-left: 20px !important;
 }
 .jumbo-meme .embed-responsive{
     min-height: 350px;
@@ -130,11 +141,6 @@ a.desc:after {
     padding-right: 0;
     padding-left: 0;
 }
-.jumbo-meme{
-    padding-right: 20px !important;
-    padding-left: 20px !important;
-    padding-top: 1px !important;
-}
 .jumbo-meme .share-buttons{
     position: absolute;
     bottom: 40px;
@@ -143,3 +149,37 @@ a.desc:after {
     background-color: white;
 }
 
+.replica ul.tags li:before{
+    content: '#';
+}
+
+.replica ul.tags li{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.fb-share-button > span {
+  vertical-align: baseline !important;
+}
+
+/*Meme*/
+
+#meme h2 a{
+    color: white !important;
+}
+#meme h2 a:hover{
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/*Replica*/
+.panel-heading h1 a{
+    color: white !important;
+}
+.panel-heading h1 a:hover{
+    color: white !important;
+    text-decoration: none !important;
+}
+.panel-heading h1 small{
+    color: #C7C7C7;
+}

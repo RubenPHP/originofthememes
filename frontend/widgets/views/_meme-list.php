@@ -1,7 +1,7 @@
 <?php
 use frontend\widgets\ShareButtonsWidget;
 ?>
-<div class="row featured img-rounded">
+<div class="row featured img-rounded no-gutter">
   <?php foreach ($memes as $meme): ?>
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">

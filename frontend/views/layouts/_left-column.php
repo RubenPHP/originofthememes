@@ -43,7 +43,7 @@ $latestReplicas = Vidmage::find()
 
 <?= $this->render('_left-column-list-items', ['items' => $latestReplicas,
                                               'title' => 'Latest Replicas',
-                                              'icon' => 'globe',
+                                              'icon' => 'film',
                                               'divId' => 'latest-replicas',
                                               'class' => 'info']) ?>
 

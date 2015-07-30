@@ -14,16 +14,20 @@ $this->registerMetaTag([
 
     <div id="most-popular-meme" class="panel panel-primary">
       <div class="panel-heading">
-        <h2><span class="panel-title glyphicon glyphicon-fire glyphicon-1-5x"></span> <?= Yii::t('app', 'Most Popular Meme')?></h2>
+        <h2><span class="panel-title glyphicon glyphicon-fire glyphicon-1x"></span> <?= Yii::t('app', 'Most Popular Meme')?></h2>
       </div>
-      <div class="panel-body">
+      <div class="panel-body no-gutter">
         <?= FeaturedMemeWidget::widget(['meme'=>$mostPopularMeme]) ?>
       </div>
     </div>
 
-    <div class="row">
-      <h3><span class="glyphicon glyphicon-time glyphicon-2x text-primary"></span> <?= Yii::t('app', 'New Replicas')?></h3>
-      <?= ReplicaListWidget::widget(['replicas'=>$newReplicas]) ?>
+    <div id="most-popular-meme" class="panel panel-info">
+      <div class="panel-heading">
+        <h2><span class="panel-title glyphicon glyphicon-time glyphicon-1-5x"></span> <?= Yii::t('app', 'New Memes')?></h2>
+      </div>
+      <div class="panel-body">
+        <?= MemeListWidget::widget(['memes'=>$newMemes]) ?>
+      </div>
     </div>
 
 
@@ -31,13 +35,18 @@ $this->registerMetaTag([
       <div class="panel-heading">
         <h3><span class="panel-title glyphicon glyphicon-certificate glyphicon-1-5x"></span> <?= Yii::t('app', "Editor's Pick")?></h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body no-gutter">
         <?= FeaturedMemeWidget::widget(['meme'=>$editorMemePick]) ?>
       </div>
     </div>
 
-    <div class="row">
-      <h3><span class="glyphicon glyphicon-time glyphicon-2x text-primary"></span> <?= Yii::t('app', 'New Memes')?></h3>
-      <?= MemeListWidget::widget(['memes'=>$newMemes]) ?>
+    <div id="most-popular-meme" class="panel panel-info">
+      <div class="panel-heading">
+        <h2><span class="panel-title glyphicon glyphicon-time glyphicon-1-5x"></span> <?= Yii::t('app', 'New Replicas')?></h2>
+      </div>
+      <div class="panel-body">
+        <?= ReplicaListWidget::widget(['replicas'=>$newReplicas]) ?>
+      </div>
     </div>
+
 </div>

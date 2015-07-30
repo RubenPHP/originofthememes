@@ -9,16 +9,36 @@ $this->registerMetaTag([
 ]);
 ?>
 
+
+
 <div class="vidmage-index">
-    <h1>
-        <?= Yii::t('app', 'Replica: ') . $vidmage ?>
-        <small><?= Yii::t('app', 'This is a replica of the meme: ') . $meme ?></small>
-    </h1>
-    <?= VidmageListWidget::widget(['vidmages' => [$vidmage]])?>
+    <div id="replica" class="panel panel-primary">
+      <div class="panel-heading">
+        <h1>
+            <a href="<?= $vidmage->siteUrl ?>"><?= $vidmage ?></a>
+            <small><?= Yii::t('app', 'This is a replica of the meme: ') . $meme ?></small>
+        </h1>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= VidmageListWidget::widget(['vidmages' => [$vidmage]])?>
+      </div>
+    </div>
 
-    <h2><span class="glyphicon glyphicon-globe"></span> <?= Yii::t('app', 'Original Meme') ?></h2>
-    <?= FeaturedMemeWidget::widget(['meme'=>$meme]) ?>
+    <div id="meme" class="panel panel-info">
+      <div class="panel-heading">
+        <h2><span class="glyphicon glyphicon-globe"></span> <?= Yii::t('app','Original Meme')?></h2>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= FeaturedMemeWidget::widget(['meme'=>$meme]) ?>
+      </div>
+    </div>
 
-    <h2><span class="glyphicon glyphicon-film"></span> <?= Yii::t('app', 'Other Replicas of the Meme: ') . $meme ?></h2>
-    <?= VidmageListWidget::widget(['vidmages'=>$meme->getAllNm('notOriginMemeVidmages', 'vidmage')])?>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h2><?= Yii::t('app','Other Replicas of this Meme: ')?></h2>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= VidmageListWidget::widget(['vidmages'=>$meme->getAllNm('notOriginMemeVidmages', 'vidmage')])?>
+      </div>
+    </div>
 </div>

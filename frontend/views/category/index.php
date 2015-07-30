@@ -8,6 +8,12 @@ $this->registerMetaTag([
 ]);
 ?>
 <div class="category-index">
-    <h1><span class="glyphicon glyphicon-blackboard"></span> <?= $channel ?></h1>
-    <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1><span class="glyphicon glyphicon-blackboard"></span> <?= $channel ?> <?= Yii::t('app','Memes')?></h1>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
+      </div>
+    </div>
 </div>

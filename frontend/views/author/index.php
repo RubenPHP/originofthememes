@@ -10,12 +10,15 @@ $this->registerMetaTag([
 ?>
 
 <div class="author-index">
-    <div class="row">
-        <h1 class="pull-left"><span class="glyphicon glyphicon-user"></span> <?= $author ?></h1>
-        <div>
-            <?= ShareButtonsWidget::widget(['vidmageMeme' => $author])?>
-        </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1>
+            <span class="glyphicon glyphicon-user"></span> 
+            <a href="<?= $author->siteUrl ?>"><?= $author ?> <?= Yii::t('app','Memes')?></a>
+        </h1>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
+      </div>
     </div>
-    <div class="clearfix"></div>
-    <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
 </div>

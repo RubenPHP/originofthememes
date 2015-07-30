@@ -5,9 +5,11 @@ use frontend\widgets\ShareButtonsWidget;
 use common\helpers\Tools;
 ?>
 <div class="col-sm-6 jumbo-meme">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="<?= $vidmage->url ?>"></iframe>
-    </div>
+    <a href="<?= $vidmage->siteUrl ?>" class="thumbnail">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<?= $vidmage->url ?>"></iframe>
+        </div>
+    </a>
 </div>
 <div class="col-sm-6">
     <div class="jumbotron jumbo-meme">

@@ -9,12 +9,12 @@ $this->registerMetaTag([
 ]);
 ?>
 <div class="tag-index">
-    <div class="row">
-        <h1 class="pull-left"><span class="glyphicon glyphicon-tag"></span> #<?= $tag ?></h1>
-        <div>
-            <?= ShareButtonsWidget::widget(['vidmageMeme' => $tag])?>
-        </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1><span class="glyphicon glyphicon-tag"></span> #<?= $tag ?> <?= Yii::t('app','Memes')?></h1>
+      </div>
+      <div class="panel-body no-gutter">
+        <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
+      </div>
     </div>
-    <div class="clearfix"></div>
-    <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
 </div>
