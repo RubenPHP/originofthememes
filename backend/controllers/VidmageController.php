@@ -37,7 +37,7 @@ class VidmageController extends Controller
 				'class' => AccessControl::className(),
 					'rules' => [
 					[
-                       'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                       'actions' => ['index', 'view', 'create', 'update', 'delete', 'redownload-thumb'],
                        'allow' => true,
                        'roles' => ['@'],
                        'matchCallback' => function ($rule, $action) {
@@ -199,6 +199,16 @@ class VidmageController extends Controller
             return $this->redirect(['index']);
         }
 	}
+
+    public function actionRedownloadThumb($id){
+        $vidmage = $this->findModel($id);
+        if ($vidmage) {
+            $vidmage->downloadAndSaveThumbnail();
+            \Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Thumbnail downloaded succesfully'));
+        }
+        \Yii::$app->getSession()->setFlash('error', Yii::t('app', "Vidmage don't exist"));
+        return $this->redirect(['index']);
+    }
 
 	/**
 	 * Finds the Vidmage model based on its primary key value.

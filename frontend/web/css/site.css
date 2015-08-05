@@ -141,6 +141,11 @@ a.desc:after {
     padding-right: 0;
     padding-left: 0;
 }
+
+.jumbo-meme ul.author li, .jumbo-meme ul.channel li{
+  padding-right: 0;
+}
+
 .jumbo-meme .share-buttons{
     position: absolute;
     bottom: 40px;

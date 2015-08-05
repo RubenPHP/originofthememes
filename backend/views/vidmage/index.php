@@ -10,7 +10,7 @@ use yii\grid\GridView;
 * @var common\models\VidmageSearch $searchModel
 */
 
-    $this->title = 'Vidmages';
+$this->title = 'Vidmages';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,6 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php //     echo $this->render('_search', ['model' =>$searchModel]);
     ?>
 
+    <div>
+        <?php if (Yii::$app->session->hasFlash('success')): ?>
+            <div class="alert alert-success">
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+        <?php endif; ?>
+    </div>
     <div class="clearfix">
         <p class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('app', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -26,8 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="pull-right">
 
-                                                                                                                                                                    
-            <?= 
+            <?=
             \yii\bootstrap\ButtonDropdown::widget(
                 [
                     'id'       => 'giiant-relations',
@@ -78,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>        </div>
     </div>
 
-    
+
         <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
         <div class="panel panel-default">
@@ -117,7 +123,16 @@ $this->params['breadcrumbs'][] = $this->title;
 			'name',
 			'id_url',
 			'views',
-			'is_active',
+			'is_active:boolean',
+            [
+             'label' => Yii::t('app', 'Redownload Thumb'),
+             'format' => 'raw',
+             'value' => function($vidmage){
+                return Html::a(Yii::t('app', 'Redownload Thumb'),
+                                        ['vidmage/redownload-thumb', 'id' => $vidmage->id],
+                                        ['class' => 'btn btn-success']);
+             }
+            ],
                 ],
             ]); ?>
                 </div>
@@ -128,5 +143,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php \yii\widgets\Pjax::end() ?>
 
-    
+
 </div>

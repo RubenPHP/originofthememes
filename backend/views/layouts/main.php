@@ -38,10 +38,11 @@ AppAsset::register($this);
             {
                 $menuItems = [
                     ['label' => 'Vidmage', 'items' =>[
-                                            ['label' => 'Vidmage','url' => ['/vidmage/index']],
-                                            ['label' => 'Category','url' => ['/category/index']],
-                                            ['label' => 'Author','url' => ['/author/index']],
-                                            ['label' => 'Tag','url' => ['/tag/index']],
+                        ['label' => 'Vidmage List','url' => ['/vidmage/index']],
+                        ['label' => 'Vidmage New','url' => ['/vidmage/create']],
+                        ['label' => 'Category','url' => ['/category/index']],
+                        ['label' => 'Author','url' => ['/author/index']],
+                        ['label' => 'Tag','url' => ['/tag/index']],
                                         ]],
                     ['label' => 'Meme', 'url' => ['/meme/index']],
                     ['label' => 'Platform', 'url' => ['/platform/index']],
@@ -57,6 +58,10 @@ AppAsset::register($this);
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }
+            $menuItems[] = [
+                'label' => 'Frontend',
+                'url' => Yii::getAlias('@frontendUrl')
+            ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'items' => $menuItems,

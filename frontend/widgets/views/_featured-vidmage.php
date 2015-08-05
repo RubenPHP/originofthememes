@@ -18,6 +18,8 @@ use common\helpers\Tools;
         <?= Tools::ulWithLink($vidmage->getAllNm('vidmageTags', 'tag'), 'tag', true) ?>
         <span class="glyphicon glyphicon-user pull-left"></span>
         <?= Tools::ulWithLink($vidmage->getAllNm('vidmageAuthors', 'author'), 'author', true) ?>
+        <span class="glyphicon glyphicon-blackboard pull-left"></span>
+        <?= Tools::ulWithLink($vidmage->getAllNm('vidmageCategories', 'category'), 'channel', true) ?>
         <?php foreach ($vidmage->memeVidmages as $memeVidmage): ?>
             <?php if ($memeVidmage->is_the_origin): ?>
                 <p>This is the origin of the meme: <?= Html::a($memeVidmage->meme, $memeVidmage->meme->siteUrl) ?></p>
