@@ -100,7 +100,6 @@ AppAsset::register($this);
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-    <a title="Web Analytics" href="http://clicky.com/100866915"><img alt="Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
     <script type="text/javascript">
     var clicky_site_ids = clicky_site_ids || [];
     clicky_site_ids.push(100866915);
