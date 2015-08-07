@@ -8,9 +8,6 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Whatch the replica {replica} of the meme {meme}', ['replica'=>$vidmage,'meme'=>$meme]),
 ]);
 ?>
-
-
-
 <div class="vidmage-index">
     <div id="replica" class="panel panel-primary">
       <div class="panel-heading">
@@ -38,7 +35,7 @@ $this->registerMetaTag([
         <h2><?= Yii::t('app','Other Replicas of this Meme: ')?></h2>
       </div>
       <div class="panel-body no-gutter">
-        <?= VidmageListWidget::widget(['vidmages'=>$meme->getAllNm('notOriginMemeVidmages', 'vidmage')])?>
+        <?= VidmageListWidget::widget(['vidmages'=>$vidmage->getAllNm('notOriginMemeVidmages', 'vidmage')])?>
       </div>
     </div>
 </div>
