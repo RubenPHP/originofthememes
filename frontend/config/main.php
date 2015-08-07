@@ -18,7 +18,7 @@ return [
             'enableStrictParsing' => true,
             'rules' => [
                 '/' => 'site/index',
-                'channels/<slug:\w+>' => 'category/index',
+                'channels/<slug>' => 'category/index',
                 'tags/<slug>' => 'tag/index',
                 'authors/<slug>' => 'author/index',
                 'memes/<slug>' => 'meme/index',
