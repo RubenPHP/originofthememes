@@ -70,7 +70,7 @@ AppAsset::register($this);
     <footer class="footer">
         <div class="container">
         <p class="pull-left">&copy; Origin of the Memes <?= date('Y') ?></p>
-        <p class="pull-right">Debeloped by <a href="http://rubendjon.com/" rel="nofollow" target="_blank">RubenDjOn</a></p>
+        <p class="pull-right">Developed by <a href="http://rubendjon.com/" rel="nofollow" target="_blank">RubenDjOn</a></p>
         </div>
     </footer>
 
