@@ -2,6 +2,8 @@
 use frontend\widgets\VidmageListWidget;
 use frontend\widgets\FeaturedMemeWidget;
 use frontend\widgets\FeaturedVidmageWidget;
+use yii\widgets\Pjax;
+
 
 $this->title = 'Replica ' . $vidmage . ' of the Meme ' . $meme;
 $this->registerMetaTag([
@@ -9,6 +11,12 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Whatch the replica {replica} of the meme {meme}', ['replica'=>$vidmage,'meme'=>$meme]),
 ]);
 ?>
+
+<?php Pjax::begin([
+  'enablePushState' => false,
+  'scrollTo' => 0,
+]); ?>
+
 <div class="vidmage-index">
     <div id="replica" class="panel panel-primary">
       <div class="panel-heading">
@@ -40,3 +48,4 @@ $this->registerMetaTag([
       </div>
     </div>
 </div>
+<?php Pjax::end(); ?>

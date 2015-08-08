@@ -1,6 +1,7 @@
 <?php
 use frontend\widgets\VidmageListWidget;
 use frontend\widgets\ShareButtonsWidget;
+use yii\widgets\Pjax;
 
 $this->title = 'Memes with Tag: ' . $tag;
 $this->registerMetaTag([
@@ -8,6 +9,12 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Watch memes from vine, youtube, instagram, labeled with the tag '). $tag,
 ]);
 ?>
+
+<?php Pjax::begin([
+  'enablePushState' => false,
+  'scrollTo' => 0,
+]); ?>
+
 <div class="tag-index">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -18,3 +25,4 @@ $this->registerMetaTag([
       </div>
     </div>
 </div>
+<?php Pjax::end(); ?>

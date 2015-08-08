@@ -1,6 +1,8 @@
 <?php
 use frontend\widgets\VidmageListWidget;
 use frontend\widgets\ShareButtonsWidget;
+use yii\widgets\Pjax;
+
 
 $this->title = 'Memes from Author: ' . $author;
 $this->registerMetaTag([
@@ -8,6 +10,12 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Watch memes created or starring '). $author,
 ]);
 ?>
+
+<?php Pjax::begin([
+  'enablePushState' => false,
+  'scrollTo' => 0,
+  //'enableReplaceState' => false,
+]); ?>
 
 <div class="author-index">
     <div class="panel panel-primary">
@@ -22,3 +30,5 @@ $this->registerMetaTag([
       </div>
     </div>
 </div>
+
+<?php Pjax::end(); ?>

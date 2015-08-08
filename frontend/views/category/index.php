@@ -8,11 +8,12 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Watch and enjoy memes on the channel '). $channel,
 ]);
 ?>
+
 <?php Pjax::begin([
-        'enablePushState' => false,
-        'scrollTo' => 0,
-        //'enableReplaceState' => false,
-      ]); ?>
+  'enablePushState' => false,
+  'scrollTo' => 0,
+  //'enableReplaceState' => false,
+]); ?>
 
 <div class="category-index">
     <div class="panel panel-primary">
