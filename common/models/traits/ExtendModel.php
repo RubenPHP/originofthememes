@@ -25,6 +25,5 @@ trait ExtendModel{
         $route = Url::to([$this->tableName().'/index', 'slug'=>$slug]);
         $domain = Url::base(true);
         return $domain.$route;
-        //return $this->name;
     }
 }

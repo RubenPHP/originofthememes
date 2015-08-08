@@ -5,5 +5,5 @@
 <?= $this->render('_twitter-share-vidmage-meme-button',
                 [
                  'vidmageMeme' => $vidmageMeme,
-                 'text' => 'testing text',
+                 'text' => $vidmageMeme,
                 ]) ?>

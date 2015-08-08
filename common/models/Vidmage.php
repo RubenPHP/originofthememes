@@ -140,7 +140,6 @@ class Vidmage extends BaseVidmage
             ->where(['meme_id'=>$this->memeVidmages[0]->meme_id])
             ->andWhere(['is_the_origin'=>false])
             ->andWhere(['<>', 'vidmage_id', $this->id]);
-        //var_dump($query->createCommand()->rawSql);die;
         return $query->all();
     }
 

@@ -23,6 +23,6 @@ $this->registerMetaTag([
     <h2><?= Yii::t('app','Replicas')?></h2>
   </div>
   <div class="panel-body no-gutter">
-    <?= VidmageListWidget::widget(['vidmages'=>$meme->getAllNm('notOriginMemeVidmages','vidmage')]) ?>
+    <?= VidmageListWidget::widget(['vidmages'=>$vidmages]) ?>
   </div>
 </div>

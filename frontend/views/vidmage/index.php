@@ -1,6 +1,7 @@
 <?php
 use frontend\widgets\VidmageListWidget;
 use frontend\widgets\FeaturedMemeWidget;
+use frontend\widgets\FeaturedVidmageWidget;
 
 $this->title = 'Replica ' . $vidmage . ' of the Meme ' . $meme;
 $this->registerMetaTag([
@@ -17,7 +18,7 @@ $this->registerMetaTag([
         </h1>
       </div>
       <div class="panel-body no-gutter">
-        <?= VidmageListWidget::widget(['vidmages' => [$vidmage]])?>
+        <?= FeaturedVidmageWidget::widget(['vidmage'=>$vidmage]) ?>
       </div>
     </div>
 
@@ -35,7 +36,7 @@ $this->registerMetaTag([
         <h2><?= Yii::t('app','Other Replicas of this Meme: ')?></h2>
       </div>
       <div class="panel-body no-gutter">
-        <?= VidmageListWidget::widget(['vidmages'=>$vidmage->getAllNm('notOriginMemeVidmages', 'vidmage')])?>
+        <?= VidmageListWidget::widget(['vidmages'=>$vidmages])?>
       </div>
     </div>
 </div>

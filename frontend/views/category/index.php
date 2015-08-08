@@ -1,4 +1,5 @@
 <?php
+use yii\widgets\Pjax;
 use frontend\widgets\VidmageListWidget;
 
 $this->title = 'Memes on Channel: ' . $channel;
@@ -7,6 +8,12 @@ $this->registerMetaTag([
     'content' => Yii::t('app','Watch and enjoy memes on the channel '). $channel,
 ]);
 ?>
+<?php Pjax::begin([
+        'enablePushState' => false,
+        'scrollTo' => 0,
+        //'enableReplaceState' => false,
+      ]); ?>
+
 <div class="category-index">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -17,3 +24,5 @@ $this->registerMetaTag([
       </div>
     </div>
 </div>
+
+<?php Pjax::end(); ?>

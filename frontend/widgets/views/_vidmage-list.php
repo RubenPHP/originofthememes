@@ -1,3 +1,10 @@
-<?php foreach ($vidmages as $vidmage): ?>
-    <?= $this->render('_featured-vidmage', compact('vidmage'));?>
-<?php endforeach ?>
+<?php
+use yii\widgets\ListView;
+?>
+
+<?=
+    ListView::widget( [
+        'dataProvider' => $vidmages,
+        'itemView' => '_featured-vidmage',
+    ]);
+?>
