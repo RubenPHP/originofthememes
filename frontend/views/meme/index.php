@@ -17,7 +17,7 @@ $this->registerMetaTag([
 
 <div id="meme" class="panel panel-primary">
   <div class="panel-heading">
-    <h2><a href="<?= $meme->siteUrl ?>"><?= Yii::t('app','Meme:')?> <?= $meme ?></a></h2>
+    <h1><a href="<?= $meme->siteUrl ?>"><?= Yii::t('app','Meme:')?> <?= $meme ?></a></h1>
   </div>
   <div class="panel-body no-gutter">
     <?= FeaturedMemeWidget::widget(['meme'=>$meme]) ?>

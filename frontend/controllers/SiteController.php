@@ -70,7 +70,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $mostPopularMeme = Meme::findOne(8);
+        $mostPopularMeme = Meme::mostPopular();
         $newReplicas = Vidmage::find()
                             ->joinWith('memeVidmages')
                             ->where(['meme_vidmage.is_the_origin' => false])

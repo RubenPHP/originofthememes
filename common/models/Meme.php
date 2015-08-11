@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\db\Query;
 
 use \common\models\base\Meme as BaseMeme;
 use \common\models\traits\ExtendModel;
@@ -30,6 +31,19 @@ class Meme extends BaseMeme
             'class' => BlameableBehavior::className(),
             ],
         ];
+    }
+
+
+    public static function mostPopular(){
+        $query = new Query;
+        $query->select('meme_id, COUNT(meme_id) AS n_memes')
+              ->from('meme_vidmage')
+              ->groupBy('meme_id')
+              ->orderBy(['n_memes' => SORT_DESC])
+              ->limit(1);
+        $row = $query->one();
+
+        return self::findOne($row['meme_id']);
     }
 
     public function saveManyVidmages($vidmages, $is_the_origin=false){
