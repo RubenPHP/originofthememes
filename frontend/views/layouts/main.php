@@ -52,18 +52,18 @@ AppAsset::register($this);
         ?>
 
         <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <div id="left-column" class="row">
-            <div class="col-md-3">
-                <?= $this->render('_left-column'); ?>
+          <?= Breadcrumbs::widget([
+              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+          ]) ?>
+          <?= Alert::widget() ?>
+          <div id="left-column" class="row">
+            <div class="col-md-9 col-md-push-3">
+              <?= $content ?>
             </div>
-            <div class="col-md-9">
-                <?= $content ?>
+            <div class="col-md-3 col-md-pull-9">
+              <?= $this->render('_left-column'); ?>
             </div>
-        </div>
+          </div>
         </div>
     </div>
 

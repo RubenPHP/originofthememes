@@ -163,6 +163,14 @@ a.desc:after {
     padding-left: 0;
 }
 
+.replica .thumbnail a > img{
+    height: 201px !important;
+}
+
+.replica .thumbnail .caption{
+    min-height: 185px;
+}
+
 .fb-share-button > span {
   vertical-align: baseline !important;
 }
