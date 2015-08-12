@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\helpers\Url;
 
 use \common\models\base\Vidmage as BaseVidmage;
 use \common\models\traits\ExtendModel;
@@ -40,6 +41,23 @@ class Vidmage extends BaseVidmage
             $this->downloadAndSaveThumbnail();
         }
         return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getSiteUrl(){
+        $slug = isset($this->slug) ? $this->slug : $this->name;
+        $url = Url::to([$this->tableName().'/index', 'slug'=>$slug]);
+        if ($this->isTheOrigin) {
+            $url = $this->memeVidmage->meme->siteUrl;
+        }
+        return $url;
+    }
+
+    public function getIsTheOrigin(){
+        return $this->memeVidmage->is_the_origin;
+    }
+
+    public function getMemeVidmage(){
+        return $this->memeVidmages[0];
     }
 
     public function saveManyCategories($vidmageCategories){
