@@ -21,7 +21,7 @@ $this->registerMetaTag([
       </div>
     </div>
 
-    <div id="most-popular-meme" class="panel panel-info">
+    <div id="meme-list" class="panel panel-info">
       <div class="panel-heading">
         <h2><span class="panel-title glyphicon glyphicon-time glyphicon-1-5x"></span> <?= Yii::t('app', 'New Memes')?></h2>
       </div>
@@ -40,7 +40,7 @@ $this->registerMetaTag([
       </div>
     </div>
 
-    <div id="most-popular-meme" class="panel panel-info">
+    <div id="replica-list" class="panel panel-info">
       <div class="panel-heading">
         <h2><span class="panel-title glyphicon glyphicon-time glyphicon-1-5x"></span> <?= Yii::t('app', 'New Replicas')?></h2>
       </div>

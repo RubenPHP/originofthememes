@@ -3,7 +3,7 @@ use frontend\widgets\ShareButtonsWidget;
 ?>
 <div class="row featured img-rounded no-gutter">
   <?php foreach ($memes as $meme): ?>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-3 meme">
           <div class="thumbnail">
               <a href="<?= $meme->siteUrl ?>">
                 <img src="<?= $meme->thumbnailUrl ?>" alt="...">

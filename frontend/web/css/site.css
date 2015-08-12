@@ -163,11 +163,11 @@ a.desc:after {
     padding-left: 0;
 }
 
-.replica .thumbnail a > img{
+.meme .thumbnail a > img, .replica .thumbnail a > img{
     height: 201px !important;
 }
 
-.replica .thumbnail .caption{
+.meme .thumbnail .caption, .replica .thumbnail .caption{
     min-height: 185px;
 }
 
