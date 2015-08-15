@@ -12,7 +12,7 @@ $this->registerMetaTag([
 ?>
 
 <?php Pjax::begin([
-  'enablePushState' => false,
+  'enablePushState' => true,
   'scrollTo' => 0,
   //'enableReplaceState' => false,
 ]); ?>
