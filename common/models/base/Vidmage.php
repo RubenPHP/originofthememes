@@ -125,6 +125,15 @@ class Vidmage extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getMainAuthor()
+    {
+        return $this->hasOne(\common\models\VidmageAuthor::className(), ['vidmage_id' => 'id'])
+            ->where(['is_main_author'=>true]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getVidmageCategories()
     {
         return $this->hasMany(\common\models\VidmageCategory::className(), ['vidmage_id' => 'id']);

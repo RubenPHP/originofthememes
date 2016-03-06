@@ -109,6 +109,15 @@ class Meme extends BaseMeme
         $newOriginMemeVidmage->save();
     }
 
+    public function getAuthorNameOfTheOriginalMeme(){
+        $author = $this->getAuthorOfTheOriginalMeme();
+        return isset($author) ? $author->name : '';
+    }
+
+    public function getAuthorOfTheOriginalMeme(){
+        return $this->getOriginMemeVidmage()->vidmage->mainAuthor;
+    }
+
     public function getUrl(){
         return $this->originMemeVidmage->vidmage->url;
     }

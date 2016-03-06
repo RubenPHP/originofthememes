@@ -44,6 +44,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'class' => yii\base\Theme::className(),
+                'basePath' => '@app/themes/mobirise'
+            ]
+        ],
     ],
     'params' => $params,
 ];
