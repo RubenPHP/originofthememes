@@ -1,5 +1,5 @@
 <?php
-use frontend\widgets\FeaturedMemeWidget;
+use frontend\widgets\MemeWidget;
 use frontend\widgets\VidmageListWidget;
 use yii\widgets\Pjax;
 
@@ -15,14 +15,7 @@ $this->registerMetaTag([
   'scrollTo' => 0,
 ]); ?>
 
-<div id="meme" class="panel panel-primary">
-  <div class="panel-heading">
-    <h1><a href="<?= $meme->siteUrl ?>"><?= Yii::t('app','Meme:')?> <?= $meme ?></a></h1>
-  </div>
-  <div class="panel-body no-gutter">
-    <?= FeaturedMemeWidget::widget(['meme'=>$meme]) ?>
-  </div>
-</div>
+<?= MemeWidget::widget(['meme'=>$meme]) ?>
 
 <div id="replicas" class="panel panel-info">
   <div class="panel-heading">
