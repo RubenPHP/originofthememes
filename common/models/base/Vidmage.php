@@ -85,6 +85,16 @@ class Vidmage extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getMeme()
+    {
+        return $this->hasOne(\common\models\Meme::className(), ['id' => 'meme_id'])
+            ->via('memeVidmages');;
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCreatedBy()
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'created_by']);

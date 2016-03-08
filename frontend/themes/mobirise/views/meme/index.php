@@ -17,12 +17,5 @@ $this->registerMetaTag([
 
 <?= MemeWidget::widget(['meme'=>$meme]) ?>
 
-<div id="replicas" class="panel panel-info">
-  <div class="panel-heading">
-    <h2><?= Yii::t('app','Replicas')?></h2>
-  </div>
-  <div class="panel-body no-gutter">
-    <?= VidmageListWidget::widget(['vidmages'=>$vidmages]) ?>
-  </div>
-</div>
+<?= VidmageListWidget::widget(['vidmages'=>$vidmages, 'theme'=>'mobirise']) ?>
 <?php Pjax::end(); ?>

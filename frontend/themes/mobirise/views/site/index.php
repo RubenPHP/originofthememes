@@ -34,7 +34,6 @@ $this->registerMetaTag([
         <div class="mbr-header mbr-header--wysiwyg row">
             <div class="col-sm-8 col-sm-offset-2">
                 <h3 class="mbr-header__text">NEW REPLICAS</h3>
-
             </div>
         </div>
     </div>

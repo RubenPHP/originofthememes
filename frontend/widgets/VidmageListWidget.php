@@ -6,12 +6,14 @@ use yii\helpers\Html;
 
 class VidmageListWidget extends Widget{
     public $vidmages;
+    public $theme;
 
     public function init(){
         parent::init();
     }
 
     public function run(){
-        return $this->render('_vidmage-list', ['vidmages' => $this->vidmages]);
+        $view = isset($this->theme) ? "{$this->theme}\\_vidmage-list" : '_vidmage-list';
+        return $this->render($view, ['vidmages' => $this->vidmages]);
     }
 }
